@@ -51,7 +51,6 @@ class Categorie
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
         return $this;
     }
 
