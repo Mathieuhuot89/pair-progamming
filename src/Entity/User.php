@@ -87,12 +87,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: voitures::class, inversedBy: 'users')]
-    private Collection $userId;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class, orphanRemoval: true)]
+    private Collection $commandes;
+
 
     public function __construct()
     {
         $this->userId = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,26 +264,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, voitures>
+     * @return Collection<int, Commande>
      */
-    public function getUserId(): Collection
+    public function getCommandes(): Collection
     {
-        return $this->userId;
+        return $this->commandes;
     }
 
-    public function addUserId(voitures $userId): self
+    public function addCommande(Commande $commande): self
     {
-        if (!$this->userId->contains($userId)) {
-            $this->userId->add($userId);
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeUserId(voitures $userId): self
+    public function removeCommande(Commande $commande): self
     {
-        $this->userId->removeElement($userId);
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
+            }
+        }
 
         return $this;
     }
+
 }

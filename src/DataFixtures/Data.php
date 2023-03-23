@@ -4,8 +4,8 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\User;
-use App\Entity\Voitures;
-use App\Entity\Categorie;
+use App\Entity\Marque;
+use App\Entity\Voiture;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -50,9 +50,9 @@ class Data extends Fixture
         $slugify = new Slugify();
 
         foreach ($catNames as $name) {
-            $category = new Categorie();
+            $category = new Marque();
             $category->setNom($name);
-            // $category->setSlug($slugify->slugify($name));
+            $category->setSlug($slugify->slugify($name));
             $category->setDescription($faker->paragraph(3));
             $category->setImageUrl($faker->imageUrl(640, 480, 'cars', true));
             $category->setCreateAt(new \DateTimeImmutable());
@@ -61,8 +61,10 @@ class Data extends Fixture
             $categories[] = $category;
         }
 
+
+        $voitures = [];
         for($i=0;$i<50;$i++){
-            $voiture = new Voitures();
+            $voiture = new Voiture();
             $voiture->setMarque($faker->randomElement($catNames));
             $voiture->setDescription($faker->paragraph(6));
             $voiture->setCreatedAt(new \DateTimeImmutable());
