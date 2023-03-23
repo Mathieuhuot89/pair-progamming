@@ -20,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre émail')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -28,26 +29,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    
     #[ORM\Column]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre password ')]
+    #[Assert\Length(
+        min: 5, max: 30,
+        minMessage:"Le password doit contenir entre 5 et 30 caracteres")]
     private ?string $password = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre nom')]
+    #[Assert\Length(
+        min: 2,
+        minMessage:"Le prénom doit contenir au min 2 caracteres")]
     private ?string $nom = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre prénom ')]
+    #[Assert\Length(
+        min: 2,
+        minMessage:"Le nom doit contenir au min 2 caracteres")]
     private ?string $prenom = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre adresse ')]
+    #[Assert\Length]
     private ?string $adresse = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre ville ')]
+    #[Assert\Length(
+        min: 2,
+        minMessage:"La ville doit contenir au min 2 caracteres")]
     private ?string $ville = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre pays ')]
     private ?string $pays = null;
 
+
     #[ORM\Column]
+    #[Assert\NotBlank (message: 'Veuillez renseigner votre code postal ')]
+    #[Assert\Length(
+        min: 5, max: 5,)]
+    #[Assert\Regex(pattern: '/^[0-9]{5}$/', message: 'Votre code postal doit etre composer de 5 chiffres')]
     private ?int $codePostal = null;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
