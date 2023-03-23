@@ -1,16 +1,12 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} {% endblock %}
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
 
 {% block body %}
-<h1 class="text-center">Vous avez {{voitures|length}} voitures </h1>
-
-<div class="container d-flex flex-wrap d-flex justify-content-between">
-<pre>
-    {{ dump(voitures) }}
-</pre>
-{% for voiture in voitures %}
-    	<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-10 m-auto">
 				<div class="card mb-3">
@@ -34,9 +30,4 @@
 			</div>
 		</div>
 	</div>
-{% endfor %}
-
-</div>
-{% endblock %}
-
-
+{% endblock %} #}

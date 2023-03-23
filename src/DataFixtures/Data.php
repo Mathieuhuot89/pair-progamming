@@ -61,19 +61,20 @@ class Data extends Fixture
             $categories[] = $category;
         }
 
-        for($i=0;$i<50;$i++){
-            $voiture = new Voitures();
-            $voiture->setMarque($faker->randomElement($catNames));
-            $voiture->setDescription($faker->paragraph(6));
-            $voiture->setCreatedAt(new \DateTimeImmutable());
-            $voiture->setSlug($slugify->slugify($voiture->getMarque()));
-            $voiture->setCouleur($faker->hexColor());
-            $voiture->setImageUrl($faker->imageUrl(640, 480, 'cats', true));
-            $voiture->setPrix(mt_rand(100, 1000));
-            $voiture->addCategory($faker->randomElement($categories));
-            $manager->persist($voiture);
-        }
+        // for($i=0;$i<50;$i++){
+        //     $voiture = new Voitures();
+        //     $voiture->setMarque($faker->randomElement($catNames));
+        //     $voiture->setDescription($faker->paragraph(6));
+        //     $voiture->setCreatedAt(new \DateTimeImmutable());
+        //     $voiture->setSlug($slugify->slugify($voiture->getMarque()));
+        //     $voiture->setCouleur($faker->hexColor());
+        //     $voiture->setImageUrl($faker->imageUrl(640, 480, 'cats', true));
+        //     $voiture->setPrix(mt_rand(100, 1000));
+        //     $voiture->addCategory($faker->randomElement($categories));
+        //     $manager->persist($voiture);
+        // }
 
         $manager->flush();
     }
 }
+
