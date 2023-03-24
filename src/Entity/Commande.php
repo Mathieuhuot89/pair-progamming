@@ -36,7 +36,7 @@ class Commande
     private ?user $user = null;
 
     #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?voiture $voiture = null;
 
     public function getId(): ?int

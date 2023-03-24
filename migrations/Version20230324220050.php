@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230323150103 extends AbstractMigration
+final class Version20230324220050 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20230323150103 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE commande (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, voiture_id INTEGER NOT NULL, montant DOUBLE PRECISION NOT NULL, nb_jour_loc INTEGER NOT NULL, jour_depart DATETIME NOT NULL --(DC2Type:datetime_immutable)
+        $this->addSql('CREATE TABLE commande (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, user_id INTEGER NOT NULL, voiture_id INTEGER DEFAULT NULL, montant DOUBLE PRECISION NOT NULL, nb_jour_loc INTEGER NOT NULL, jour_depart DATETIME NOT NULL --(DC2Type:datetime_immutable)
         , jour_arrive DATETIME NOT NULL --(DC2Type:datetime_immutable)
         , created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
         , status BOOLEAN NOT NULL, CONSTRAINT FK_6EEAA67DA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) NOT DEFERRABLE INITIALLY IMMEDIATE, CONSTRAINT FK_6EEAA67D181A8BA FOREIGN KEY (voiture_id) REFERENCES voiture (id) NOT DEFERRABLE INITIALLY IMMEDIATE)');

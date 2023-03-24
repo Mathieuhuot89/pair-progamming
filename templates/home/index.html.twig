@@ -1,21 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}{{ parent() }} {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{# <h1 class="text-center">Vous avez {{voitures|length}} voitures </h1> #}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <h2>Hello TOUT mle monde! ✅</hé>
+<div class="container d-flex flex-wrap d-flex justify-content-between">
+<pre>
+    {{ dump(voitures) }}
+</pre>
+{% for voiture in voitures %}
+    	<div class="container">
+		<div class="row">
+			<div class="col-md-10 m-auto">
+				<div class="card mb-3">
+					<img src="{{voiture.imageUrl}}" class="card-img-top" alt="{{voiture.nom}}" style="height:300px">
+					<div class="card-body">
+						<h5 class="card-title">{{voiture.nom}} </h5>
+						<p class="card-text">{{voiture.description}}</p>
+						<p class="card-text">
+							<small class="text-muted">{{voiture.createdAt|date('d/m/Y')}}</small>
+						</p>
+                        <p class="card-text">{{voiture.couleur}}</p>
+                        <p class="card-text">{{voiture.prixJournalier}}</p>
+                        <p class="card-text">{{voiture.slug}}</p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Konexio091/Desktop/SYMFONY/Pair-progamming/pair_progamming/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Konexio091/Desktop/SYMFONY/Pair-progamming/pair_progamming/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+						<div class="d-grid gap-2 d-md-block">
+							<button class="btn btn-secondary" type="button">Accueil</button>
+							<button class="btn btn-primary" type="button">Categorie</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
 </div>
 {% endblock %}

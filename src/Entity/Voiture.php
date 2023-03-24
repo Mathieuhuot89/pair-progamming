@@ -40,12 +40,12 @@ class Voiture
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'voiture')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Marque::class)]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'id')]
     private ?Marque $marque = null;
 
-    #[ORM\OneToOne(mappedBy: 'voiture', cascade: ['persist', 'remove'])]
-    private ?Commande $commande = null;
+    // #[ORM\OneToOne(mappedBy: 'voiture', cascade: ['persist', 'remove'])]
+    // private ?Commande $commande = null;
 
     public function getId(): ?int
     {
@@ -172,20 +172,20 @@ class Voiture
         return $this;
     }
 
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
+    // public function getCommande(): ?Commande
+    // {
+    //     return $this->commande;
+    // }
 
-    public function setCommande(Commande $commande): self
-    {
-        // set the owning side of the relation if necessary
-        if ($commande->getVoiture() !== $this) {
-            $commande->setVoiture($this);
-        }
+    // public function setCommande(Commande $commande): self
+    // {
+    //     // set the owning side of the relation if necessary
+    //     if ($commande->getVoiture() !== $this) {
+    //         $commande->setVoiture($this);
+    //     }
 
-        $this->commande = $commande;
+    //     $this->commande = $commande;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }
