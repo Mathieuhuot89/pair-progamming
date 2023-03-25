@@ -4,7 +4,19 @@
 	{{ parent() }}
 {% endblock %}
 
+
 {% block body %}
+<h1 class="text-center mt-4">{{ marque.nom }}</h1>
+<pre>
+    {{ dump(marque) }}
+</pre>
+<pre>
+    {{ dump(voitures) }}
+</pre>
+
+<h1 class="text-center mt-4">{{ marque.description }}</h1>
+
+    {% for voiture in voitures %}
     	<div class="container mt-4">
 		<div class="row">
 			<div class="col-md-10 m-auto">
@@ -19,15 +31,13 @@
 						<p class="card-text">
 							<small class="text-muted">{{voiture.createdAt|date('d/m/Y')}}</small>
 						</p>
-
 						<div class="d-grid gap-2 d-md-block">
-						<a href="/"	class="btn btn-secondary">Accueil </a>
-						<a href="/marque/{{voiture.marque.id}}" class="btn btn-primary">Categorie </a>
-							{# <button class="btn btn-primary" type="button">Categorie</button>  #}
+						<a href="/voiture/{{voiture.id}}" class="btn btn-secondary">Back</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+    {% endfor %}
 {% endblock %}
