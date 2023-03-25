@@ -1,0 +1,21 @@
+
+    {% set createdAt = voiture.createdAt %}
+    {% set difference = date("now"|date()).diff(date(createdAt)) %}
+    {% set nbdays = difference.days %}
+
+    <div class="card my-3" style="width: 18rem;">
+  <img src="{{voiture.imageUrl}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{voiture.nom}}...</h5>
+    <p class="card-text">{{voiture.description|slice(0,50)}}...</p>
+    <p>
+        {% if nbdays < 2 %}
+            <span class="text-muted">Publié depuis {{nbdays}} jour</span>
+            {% else %}
+                <span class="text-muted">Publié depuis {{nbdays}} jours</span>
+        {% endif %}
+    </p>
+    <a href="/voiture/{{voiture.id}}" class="btn btn-primary">Voir cet voiture</a>
+    
+  </div>
+</div>

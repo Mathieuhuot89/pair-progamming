@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-10 m-auto">
+				<div class="card mb-3">
+					<img src="{{voiture.imageUrl}}" class="card-img-top" alt="{{voiture.nom}}" style="height:500px">
+					<div class="card-body">
+						<h5 class="card-title">{{voiture.nom}} {{voiture.couleur}} </h5>
+						<p class="card-text">{{voiture.description}}</p>
+                        <p class="card-text"></p>
+                        <p class="card-text">Prix à la journée : {{voiture.prixJournalier}}£</p>
+                        <p class="card-text">Stock : {{voiture.stock}}</p>
+						<p class="card-text">
+							<small class="text-muted">{{voiture.createdAt|date('d/m/Y')}}</small>
+						</p>
+
+						<div class="d-grid gap-2 d-md-block">
+						<a href="/"	class="btn btn-secondary">Accueil </a>
+							<button class="btn btn-primary" type="button">Categorie</button> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
