@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
 class Voiture
@@ -44,8 +46,14 @@ class Voiture
     #[ORM\JoinColumn(nullable: false, referencedColumnName: 'id')]
     private ?Marque $marque = null;
 
-    // #[ORM\OneToOne(mappedBy: 'voiture', cascade: ['persist', 'remove'])]
-    // private ?Commande $commande = null;
+    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: Commande::class)]
+    private Collection $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -172,20 +180,32 @@ class Voiture
         return $this;
     }
 
-    // public function getCommande(): ?Commande
-    // {
-    //     return $this->commande;
-    // }
+   /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
 
-    // public function setCommande(Commande $commande): self
-    // {
-    //     // set the owning side of the relation if necessary
-    //     if ($commande->getVoiture() !== $this) {
-    //         $commande->setVoiture($this);
-    //     }
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setVoiture($this);
+        }
 
-    //     $this->commande = $commande;
+        return $this;
+    }
 
-    //     return $this;
-    // }
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            
+        }
+
+        return $this;
+    }
+    
 }

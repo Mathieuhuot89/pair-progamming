@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CommandeRepository;
+use Date;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommandeRepository;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -20,10 +21,10 @@ class Commande
     private ?int $nbJourLoc = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $jourDepart = null;
+    private ?\DateTime $jourDepart = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $jourArrive = null;
+    private ?\DateTime $jourArrive = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -35,8 +36,8 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private ?user $user = null;
 
-    #[ORM\OneToOne(inversedBy: 'commande', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(inversedBy: 'commandes', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?voiture $voiture = null;
 
     public function getId(): ?int
@@ -68,24 +69,24 @@ class Commande
         return $this;
     }
 
-    public function getJourDepart(): ?\DateTimeImmutable
+    public function getJourDepart(): ?\DateTime
     {
         return $this->jourDepart;
     }
 
-    public function setJourDepart(\DateTimeImmutable $jourDepart): self
+    public function setJourDepart(\DateTime $jourDepart): self
     {
         $this->jourDepart = $jourDepart;
 
         return $this;
     }
 
-    public function getJourArrive(): ?\DateTimeImmutable
+    public function getJourArrive(): ?\DateTime
     {
         return $this->jourArrive;
     }
 
-    public function setJourArrive(\DateTimeImmutable $jourArrive): self
+    public function setJourArrive(\DateTime $jourArrive): self
     {
         $this->jourArrive = $jourArrive;
 

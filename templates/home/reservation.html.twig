@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    {% if total is defined %}
+    
+        Total de la réservation: {{total}} €
+
+
+    {% endif %}
+    
+   
+    {% if stock > 0 %}
+
+    
+    {{ form_start(reservationForm) }}
+        {# {{ form_row(reservationForm.jourDepart) }}
+        {{ form_row(reservationForm.jourArrive) }}
+       
+        {{ form_row(reservationForm.submit) }} #}
+     Stock : {{ stock }} </n>
+     Prix de location / J : {{ voiture.prixJournalier }} €
+
+     {{ form_end(reservationForm) }}
+    {% endif %}
+
+    
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+    const arrivee = document.getElementById('commande_jourArrive_time');
+    arrivee.hidden= true;
+    const depart = document.getElementById('commande_jourDepart_time');
+    depart.hidden= true;
+        // $('#commande_jourArrive_time').addClass('hidden');
+    </script>
+    {% endblock %}
