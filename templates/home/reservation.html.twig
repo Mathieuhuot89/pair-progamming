@@ -21,8 +21,8 @@
         {{ form_row(reservationForm.jourArrive) }}
        
         {{ form_row(reservationForm.submit) }} #}
-     Stock : {{ stock }} </n>
-     Prix de location / J : {{ voiture.prixJournalier }} €
+    <p> Stock : {{ stock }} </p>
+    <p> Prix de location / J : {{ voiture.prixJournalier }} € </p>
 
      {{ form_end(reservationForm) }}
     {% endif %}
@@ -37,4 +37,4 @@
     depart.hidden= true;
         // $('#commande_jourArrive_time').addClass('hidden');
     </script>
-    {% endblock %}
+{% endblock %}
