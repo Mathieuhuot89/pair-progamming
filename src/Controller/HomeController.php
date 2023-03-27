@@ -9,6 +9,7 @@ use App\Form\CommandeType;
 use App\Repository\MarqueRepository;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,11 +19,17 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(VoitureRepository $voitureRepository): Response
+    public function index(VoitureRepository $voitureRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $voitureRepository->findAll(),
+            $request->query->getInt('page', 1), /*page number*/
+            8 /*limit per page*/
+        );
+
         $voitures = $voitureRepository->findAll();
         return $this->render('home/index.html.twig', [
-            'voitures' => $voitures,
+            'voitures' => $pagination,
         ]);
     }
 
