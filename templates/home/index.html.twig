@@ -3,40 +3,30 @@
 {% block title %}{{ parent() }} {% endblock %}
 
 {% block body %}
-<h1 class="text-center">Vous avez {{voitures|length}} voitures </h1>
+{% include "partials/_carousel1.html.twig" %}
+
+<h1 class="text-center mb-4" style="color: goldenrod; font-size: 100px;" >Luxury Cars</h1>
+
+<h2 class="text-center mt-3 mb-3">Voici notre collection de {{voitures|length}} modèles de voitures à votre disponibilité </h2>
 
 <div class="container d-flex flex-wrap d-flex justify-content-between">
-<pre>
-    {{ dump(voitures) }}
-</pre>
-{% for voiture in voitures %}
-    	<div class="container">
-		<div class="row">
-			<div class="col-md-10 m-auto">
-				<div class="card mb-3">
-					<img src="{{voiture.imageUrl}}" class="card-img-top" alt="{{voiture.marque}}" style="height:300px">
-					<div class="card-body">
-						<h5 class="card-title">{{voiture.marque}}</h5>
-						<p class="card-text">{{voiture.description}}</p>
-						<p class="card-text">
-							<small class="text-muted">{{voiture.createdAt|date('d/m/Y')}}</small>
-						</p>
-                        <p class="card-text">{{voiture.couleur}}</p>
-                        <p class="card-text">{{voiture.prix}}</p>
-                        <p class="card-text">{{voiture.slug}}</p>
 
-						<div class="d-grid gap-2 d-md-block">
-							<button class="btn btn-secondary" type="button">Accueil</button>
-							<button class="btn btn-primary" type="button">Categorie</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+{# <pre>
+    {{ dump(voitures) }}
+</pre> #}
+
+{% for voiture in voitures %}
+    {% include "partials/_cardVoiture.html.twig" %}
 {% endfor %}
 
+	<div class="navigation d-flex justify-content-center">
+    {{ knp_pagination_render(voitures) }}
 </div>
+
+</div>
+
+
+
 {% endblock %}
 
 
