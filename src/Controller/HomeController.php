@@ -21,7 +21,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(VoitureRepository $voitureRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $pagination = $paginator->paginate(
+            $pagination = $paginator->paginate(
             $voitureRepository->findAll(),
             $request->query->getInt('page', 1), /*page number*/
             8 /*limit per page*/
