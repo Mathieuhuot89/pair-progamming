@@ -304,6 +304,9 @@ class Data extends Fixture
         //     $categories[] = $category;
         // }
 
+        
+
+
         $manager->flush();
     }
 }
