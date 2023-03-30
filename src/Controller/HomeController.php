@@ -71,7 +71,6 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         $commande->setCreatedAt(new \DateTimeImmutable());
         
-
         if ($form->isSubmitted() && $form->isValid()) {
             $diff = date_diff($commande->getJourDepart(), $commande->getJourArrive());
             $nbJourLoc = $diff->days+1;
@@ -105,4 +104,58 @@ class HomeController extends AbstractController
         ]);
     }
 
+    public function returnCar(Request $request, EntityManagerInterface $entityManager, $id): Response
+    {   
+        $commande = $entityManager->getRepository(Commande::class)->findOneBy(['id' => $id]);
+
+        if (!$commande) {
+            throw $this->createNotFoundException('La commande de location n\'a pas été trouvée.');
+        }
+
+        $voiture = $commande->getVoiture();
+        $voiture->setStock($voiture->getStock() + 1);
+        
+        $entityManager->persist($voiture);
+        $entityManager->remove($commande);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'La voiture a été retournée avec succès.');
+
+        return $this->redirectToRoute('homepage');
+    }
+
 }
+
+
+
+
+
+
+
+
+
+// class VotreController extends AbstractController
+// {
+    
+     
+//     @[Route("/return-car/{id}", name="return_car")]
+//     public function returnCar(Request $request, EntityManagerInterface $entityManager, $id): Response
+//     {   
+//         $commande = $entityManager->getRepository(Commande::class)->findOneBy(['id' => $id]);
+
+//         if (!$commande) {
+//             throw $this->createNotFoundException('La commande de location n\'a pas été trouvée.');
+//         }
+
+//         $voiture = $commande->getVoiture();
+//         $voiture->setStock($voiture->getStock() + 1);
+        
+//         $entityManager->persist($voiture);
+//         $entityManager->remove($commande);
+//         $entityManager->flush();
+
+//         $this->addFlash('success', 'La voiture a été retournée avec succès.');
+
+//         return $this->redirectToRoute('homepage');
+//     }
+// }
