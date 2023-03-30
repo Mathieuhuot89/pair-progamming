@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    	<div class="container mt-4">
+    	<div class="container mt-4" >
 		<div class="row">
 			<div class="col-md-10 m-auto">
 				<div class="card mb-3">
-					<img src="{{voiture.imageUrl}}" class="card-img-top" alt="{{voiture.nom}}" style="height:700px">
-					<div class="card-body">
-						<h5 class="card-title">{{voiture.nom}} {{voiture.couleur}} </h5>
-						<p class="card-text">{{voiture.description}}</p>
+					<img src="{{voiture.imageUrl}}" class="card-img-top" alt="{{voiture.nom}}" style="height:400px; width:500px; margin: auto; padding: 5px;">
+
+						<h5 class="card-title" style="padding: 10px; margin: auto;">{{voiture.nom}} {{voiture.couleur}} </h5>
+
+						<p class="card-text" style="padding: 10px; ">{{voiture.description}}</p>
                         <p class="card-text"></p>
                         <p class="card-text">Prix à la journée : {{voiture.prixJournalier}}£</p>
                         <p class="card-text">Stock : {{voiture.stock}}</p>
@@ -25,7 +26,12 @@
 						<a href="/marque/{{voiture.marque.id}}" class="btn btn-primary">Categorie </a>
 						<a href="/reservation/{{voiture.id}}" class="btn btn-primary">Réservation </a>
 							{# <button class="btn btn-primary" type="button">Categorie</button>  #}
+						
 						</div>
+
+
+
+						
 					</div>
 				</div>
 			</div>

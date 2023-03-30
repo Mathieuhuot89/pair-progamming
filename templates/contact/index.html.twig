@@ -19,4 +19,47 @@
 {{ form_end(form) }}
 </div>
 
+
+
+
+
+
+
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.css">
+    <!-- Your custom styles (optional) -->
+</head>
+<body>
+                    <ul class="container mt-4 mb-3">
+                        <li><i class="fa fa-map-marker fa-2x"></i>
+                            <p>Paris, France</p>
+                        </li>
+
+                        <li><i class="fa fa-phone fa-2x"></i>
+                            <p>+ 01 234 567 89</p>
+                        </li>
+
+                        <li><i class="fa fa-envelope fa-2x"></i>
+                            <p>contact@gmail.com</p>
+                        </li>
+                    </ul>
+                </div>
+               
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/mdb.js"></script>
+    <script>
+function validateForm() {
+    document.getElementById('status').innerHTML = "Sending...";
+    document.getElementById('contact-form').submit();
+}
+    </script>
+</body>
+
 {% endblock %}

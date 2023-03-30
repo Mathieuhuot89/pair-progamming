@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets%}  
+
+<style>  </style>
+
+ {% endblock %}
+
 {% block title %}{{ parent() }} {% endblock %}
 
 {% block body %}
@@ -15,14 +21,19 @@
     {{ dump(voitures) }}
 </pre> #}
 
+
+
+
 {% for voiture in voitures %}
     {% include "partials/_cardVoiture.html.twig" %}
 {% endfor %}
 
-	<div class="navigation d-flex justify-content-center">
-    {{ knp_pagination_render(voitures) }}
+
+
 </div>
 
+	<div class="navigation d-flex justify-content-center">
+    {{ knp_pagination_render(voitures) }}
 </div>
 
 

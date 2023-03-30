@@ -1,0 +1,46 @@
+ nav {
+    display: flex;
+    padding: 30px 5% 0 5%;
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+ nav h1 {
+    margin: 0;
+    text-transform: uppercase;
+    color: #470559;
+    font-size: 50px;
+}
+
+ nav .right {
+    display: flex;
+    align-items: center;
+}
+
+ nav .right a {
+    margin: 0 25px 0 0;
+    color: #030101;
+    font-size: 25px;
+    text-decoration: none;
+    
+}
+ nav .right a:hover {
+    color: white;
+    transition: 0.5s;
+}
+nav .right button {
+    padding: 5px 15px;
+    font-size: 16px;
+    background-color: #0a0111;
+    border: 1px solid #060007;
+    color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+ nav .right button:hover {
+    color: inherit;
+}
